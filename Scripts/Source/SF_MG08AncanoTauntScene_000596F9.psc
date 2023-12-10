@@ -2,6 +2,28 @@
 ;NEXT FRAGMENT INDEX 3
 Scriptname SF_MG08AncanoTauntScene_000596F9 Extends Scene Hidden
 
+;BEGIN FRAGMENT Fragment_0
+Function Fragment_0()
+;BEGIN CODE
+MG08AncanoAlias.GetActorReference().SetGhost(False)
+MG08AncanoAlias.GetActorReference().AddToFaction(MGThalmorFaction)
+
+If _SWT_MG08_EstormoOfferAccepted.GetValueInt() == 0
+    Ancano.SetInvulnerable(false)
+    Ancano.SetEssential(false)
+    MG08AncanoAlias.GetActorReference().StartCombat(Game.GetPlayer())
+    MG08AncanoAlias.GetActorReference().SetAV("Aggression", 3)
+    MGThalmorFaction.SetEnemy(CollegeFaction)
+    if GetOwningQuest().GetStage() < 30
+        GetOwningQuest().SetStage(30)
+    endif
+Else
+	MG08AncanoAllyTalkScene.Start()
+EndIf
+;END CODE
+EndFunction
+;END FRAGMENT
+
 ;BEGIN FRAGMENT Fragment_1
 Function Fragment_1()
 ;BEGIN CODE
@@ -15,28 +37,6 @@ Function Fragment_4()
 ;BEGIN CODE
 (self.GetOwningQuest() as mg08questscript).GoTime = 1
 MG08EyeMarker.PlaceAtMe(MGEyeOpenExplosion as form, 1, false, false)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_0
-Function Fragment_0()
-;BEGIN CODE
-MG08AncanoAlias.GetActorReference().SetGhost(False)
-MG08AncanoAlias.GetActorReference().AddToFaction(MGThalmorFaction)
-
-If !(DialogueWinterholdCollege as DialogueWinterholdCollegeQuestScript).EstormoOfferAccepted
-    Ancano.SetInvulnerable(false)
-    Ancano.SetEssential(false)
-    MG08AncanoAlias.GetActorReference().StartCombat(Game.GetPlayer())
-    MG08AncanoAlias.GetActorReference().SetAV("Aggression", 3)
-    MGThalmorFaction.SetEnemy(CollegeFaction)
-    if GetOwningQuest().GetStage() < 30
-        GetOwningQuest().SetStage(30)
-    endif
-Else
-	MG08AncanoAllyTalkScene.Start()
-EndIf
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -62,3 +62,5 @@ ReferenceAlias Property MG08AncanoAlias Auto
 Scene Property MG08ThalmorScene Auto
 
 Scene Property MG08AncanoAllyTalkScene  Auto  
+
+GlobalVariable Property _SWT_MG08_EstormoOfferAccepted  Auto  

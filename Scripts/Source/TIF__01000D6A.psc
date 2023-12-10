@@ -15,5 +15,3 @@ EndFunction
 ;END FRAGMENT CODE - Do not edit anything between this and the begin comment
 
 ReferenceAlias Property MG07EstormoAlias  Auto  
-
-Quest Property DialogueWinterholdCollege  Auto  

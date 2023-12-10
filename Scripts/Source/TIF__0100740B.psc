@@ -1,6 +1,6 @@
 ;BEGIN FRAGMENT CODE - Do not edit anything between this and the end comment
 ;NEXT FRAGMENT INDEX 2
-Scriptname TIF__01000D6B Extends TopicInfo Hidden
+Scriptname TIF__0100740B Extends TopicInfo Hidden
 
 ;BEGIN FRAGMENT Fragment_1
 Function Fragment_1(ObjectReference akSpeakerRef)
@@ -14,4 +14,4 @@ EndFunction
 
 ;END FRAGMENT CODE - Do not edit anything between this and the begin comment
 
-ReferenceAlias Property MG07EstormoAlias  Auto    
+ReferenceAlias Property MG07EstormoAlias  Auto  
